@@ -8,20 +8,16 @@ export const useSearchStore = defineStore('search', {
   }),
   actions: {
     fetchResults() {
-      try {
-        if (this.searchQuery.trim()) {
-          this.results = data.article.filter(
-            (article) =>
-              (article.title &&
-                article.title.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
-              (article.description &&
-                article.description.toLowerCase().includes(this.searchQuery.toLowerCase())),
-          )
-        } else {
-          this.results = data.article
-        }
-      } catch (error) {
-        console.error('Error fetching search results:', error)
+      if (this.searchQuery.trim()) {
+        this.results = data.article.filter(
+          (article) =>
+            (article.title &&
+              article.title.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+            (article.description &&
+              article.description.toLowerCase().includes(this.searchQuery.toLowerCase())),
+        )
+      } else {
+        this.results = data.article
       }
     },
     updateSearchQuery(query) {
