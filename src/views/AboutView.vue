@@ -1,7 +1,7 @@
 <template>
   <div class="about-view">
     <div class="image-container">
-      <img src="../../public/media/img/gamer_font.jpg" alt="Gamer Font" class="img-fluid" />
+      <img src="/media/img/gamer_font.jpg" alt="Gamer Font" class="img-fluid" />
     </div>
 
     <div class="container">
