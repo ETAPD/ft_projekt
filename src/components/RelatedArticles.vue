@@ -39,7 +39,9 @@ export default {
       return content.length > length ? content.substring(0, length) + '...' : content
     },
     goToArticle(postId) {
-      this.$router.push({ name: 'article', params: { id: postId } })
+      this.$router.push({ name: 'article', params: { id: postId } }).then(() => {
+        window.location.reload()
+      })
     },
   },
   computed: {
