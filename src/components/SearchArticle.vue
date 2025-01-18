@@ -23,6 +23,9 @@
 <script>
 export default {
   name: 'SearchArticle',
+  data() {
+    return {}
+  },
   props: {
     results: {
       type: Array,
@@ -40,11 +43,21 @@ export default {
   computed: {
     chunkedResults() {
       const chunkSize = 3
+      const limitedResults = this.results.slice(0, 9)
       const chunks = []
-      for (let i = 0; i < this.results.length; i += chunkSize) {
-        chunks.push(this.results.slice(i, i + chunkSize))
+      for (let i = 0; i < limitedResults.length; i += chunkSize) {
+        chunks.push(limitedResults.slice(i, i + chunkSize))
       }
       return chunks
+    },
+  },
+  watch: {
+    '$route.fullPath': {
+      handler() {
+        console.log()
+        console.log('searcharticle465:', this.results)
+      },
+      immediate: true,
     },
   },
 }
