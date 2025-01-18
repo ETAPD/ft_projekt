@@ -1,21 +1,15 @@
 <template>
-  <main>
-    <div class="container-article" v-if="article">
-      <div class="title">
-        <h1>{{ article.title }}</h1>
-      </div>
-      <section class="container-text">
-        <div v-html="article.content"></div>
-      </section>
-    </div>
-  </main>
+  <ArticleComponent :article="article" />
 </template>
 
 <script>
 import data from '@/data.json'
-
+import ArticleComponent from '@/components/ArticleComponent.vue'
 export default {
   name: 'ArticleView',
+  components: {
+    ArticleComponent,
+  },
   props: {
     id: {
       type: String,
@@ -24,7 +18,7 @@ export default {
   },
   data() {
     return {
-      article: null,
+      article: [],
     }
   },
   mounted() {
