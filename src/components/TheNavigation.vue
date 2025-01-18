@@ -40,7 +40,6 @@
 
 <script>
 import { useSearchStore } from '@/stores/search'
-
 export default {
   name: 'TheNavigation',
   data() {
@@ -82,6 +81,11 @@ export default {
     isHomePage() {
       return this.$route.path === '/'
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    const searchStore = useSearchStore()
+    searchStore.updateSearchQuery('')
+    next()
   },
 }
 </script>

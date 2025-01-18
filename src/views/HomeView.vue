@@ -7,6 +7,7 @@ export default {
     SearchArticle,
   },
   data() {
+    console.log('Data initialization')
     return {
       useSearchStore: useSearchStore(),
       results: [],
@@ -14,27 +15,32 @@ export default {
   },
   computed: {
     searchResults() {
-      return this.useSearchStore.results
+      console.log('Computing searchResults')
+      const results = this.useSearchStore.results
+      console.log('Computed results:', results)
+      return results
     },
   },
   watch: {
     searchResults(newResults) {
+      console.log('Watch searchResults - new value:', newResults)
       this.results = newResults
+      console.log('Updated results array:', this.results)
+      true
     },
-  },
-  mounted() {
-    this.useSearchStore.fetchResults()
   },
 }
 </script>
 
 <template>
-  <div class="image-container">
-    <img src="..\assets\media\img\gamer_font.jpg" alt="" class="img-fluid" />
-  </div>
+  <div class="container">
+    <div class="image-container">
+      <img src="\media\img\gamer_font.jpg" alt="" class="img-fluid" />
+    </div>
 
-  <div class="container" id="results"></div>
-  <SearchArticle :results="results" />
+    <div class="container" id="results"></div>
+    <SearchArticle :results="results" />
+  </div>
 </template>
 
 <style scoped>
