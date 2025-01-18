@@ -5,6 +5,7 @@
         <h1>{{ article.title }}</h1>
       </div>
       <section class="container-text">
+        <img :src="article.title_img" alt="title image" />
         <div v-html="article.content"></div>
       </section>
       <RelatedArticles :relatedArticles="relatedArticles" />
@@ -54,7 +55,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 main {
   margin-top: 10%;
 }
