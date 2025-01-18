@@ -65,7 +65,6 @@ export default {
 }
 
 footer {
-  margin-top: 5% !important;
   width: 100%;
   background-color: rgba(252, 252, 252, 0.26) !important;
 }
