@@ -83,14 +83,13 @@ export default {
 }
 
 .col .title {
-  display: inline;
   z-index: 1;
   color: white;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.col .desription {
-  display: none;
+.col .description {
+  display: none !important;
   z-index: 1;
   opacity: 1 !important;
 }
@@ -99,8 +98,8 @@ export default {
   display: none;
 }
 
-.col:hover .desription {
-  display: inline;
+.col:hover .description {
+  display: block !important;
   color: rgba(255, 255, 255, 1) !important;
   opacity: 1 !important;
 }
