@@ -8,8 +8,7 @@ import TheFooter from './components/TheFooter.vue'
   <header>
     <TheNavigation />
   </header>
-
-  <RouterView />
+  <main><RouterView /></main>
 
   <footer>
     <TheFooter />
