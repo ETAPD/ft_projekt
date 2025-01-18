@@ -2,19 +2,19 @@
   <div v-if="results.length">
     <div v-for="(row, rowIndex) in chunkedResults" :key="rowIndex" class="row image-container">
       <div
-        v-for="post in row"
-        :key="post.post_id"
+        v-for="article in row"
+        :key="article.post_id"
         class="col"
         :style="{
           padding: '10px',
           margin: '10px',
-          backgroundImage: `url(${post.title_img})`,
+          backgroundImage: `url(${article.title_img})`,
           backgroundSize: 'cover',
         }"
-        @click="goToArticle(post.post_id)"
+        @click="goToArticle(article.post_id)"
       >
-        <h2 class="title">{{ post.title }}</h2>
-        <p class="description">{{ truncateContent(post.content, 200) }}</p>
+        <h2 class="title">{{ article.title }}</h2>
+        <p class="description" v-html="truncateContent(article.content, 200)"></p>
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@ export default {
       return content.length > length ? content.substring(0, length) + '...' : content
     },
     goToArticle(postId) {
-      window.location.href = `article.php?id=${postId}`
+      this.$router.push({ name: 'article', params: { id: postId } })
     },
   },
   computed: {
