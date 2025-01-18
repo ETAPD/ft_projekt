@@ -23,10 +23,7 @@ export default {
   },
   watch: {
     searchResults(newResults) {
-      console.log('Watch searchResults - new value:', newResults)
       this.results = newResults
-      console.log('Updated results array:', this.results)
-      true
     },
   },
   mounted() {
