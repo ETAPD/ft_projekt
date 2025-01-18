@@ -29,6 +29,9 @@ export default {
       true
     },
   },
+  mounted() {
+    this.useSearchStore.fetchResults()
+  },
 }
 </script>
 
@@ -39,7 +42,7 @@ export default {
     </div>
 
     <div class="container" id="results"></div>
-    <SearchArticle :results="results" />
+    <SearchArticle :results="results" :key="results.length" />
   </div>
 </template>
 
