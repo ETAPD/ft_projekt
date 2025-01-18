@@ -22,18 +22,19 @@ export default {
       this.results = newResults
     },
   },
+  mounted() {
+    this.useSearchStore.fetchResults()
+  },
 }
 </script>
 
 <template>
-  <body>
-    <div class="image-container">
-      <img src="..\assets\media\img\gamer_font.jpg" alt="" class="img-fluid" />
-    </div>
+  <div class="image-container">
+    <img src="..\assets\media\img\gamer_font.jpg" alt="" class="img-fluid" />
+  </div>
 
-    <div class="container" id="results"></div>
-    <SearchArticle :results="results" />
-  </body>
+  <div class="container" id="results"></div>
+  <SearchArticle :results="results" />
 </template>
 
 <style scoped>

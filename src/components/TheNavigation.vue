@@ -46,32 +46,29 @@ export default {
     onSearch() {
       this.useSearchStore.updateSearchQuery(this.searchQuery)
     },
-    expandSearch() {
-      // Add logic to expand the search input if needed
-    },
-    shrinkSearch() {
-      // Add logic to shrink the search input if needed
-    },
+    expandSearch() {},
+    shrinkSearch() {},
     isActive(route) {
       return this.$route.path === route
-    },
-  },
-  computed: {
-    useSearch() {
-      return useSearchStore()
     },
   },
   watch: {
     searchQuery: function (searchQuery) {
       this.useSearchStore.updateSearchQuery(searchQuery)
     },
+    searchResults(newResults) {
+      console.log('Search results updated:', newResults)
+    },
+  },
+  computed: {
+    searchResults() {
+      return this.useSearchStore.results
+    },
   },
 }
 </script>
 
 <style scoped>
-/* Nav bar */
-
 nav {
   font-family: 'Barlow Condensed', sans-serif;
   background-color: rgba(29, 28, 25, 0.521) !important;

@@ -12,8 +12,10 @@ export const useSearchStore = defineStore('search', {
         if (this.searchQuery.trim()) {
           this.results = data.article.filter(
             (article) =>
-              article.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-              article.description.toLowerCase().includes(this.searchQuery.toLowerCase()),
+              (article.title &&
+                article.title.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
+              (article.description &&
+                article.description.toLowerCase().includes(this.searchQuery.toLowerCase())),
           )
         } else {
           this.results = data.article
