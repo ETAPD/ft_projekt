@@ -51,6 +51,13 @@ export default {
       return chunks
     },
   },
+  watch: {
+    results: {
+      handler(newResults) {
+        console.log('New results:', newResults)
+      },
+    },
+  },
 }
 </script>
 

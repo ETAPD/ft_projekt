@@ -1,33 +1,28 @@
 <script>
 import { useSearchStore } from '@/stores/search'
 import SearchArticle from '@/components/SearchArticle.vue'
+
 export default {
   name: 'HomeView',
   components: {
     SearchArticle,
   },
   data() {
-    console.log('Data initialization')
     return {
-      useSearchStore: useSearchStore(),
+      searchStore: useSearchStore(),
       results: [],
     }
   },
-  computed: {
-    searchResults() {
-      console.log('Computing searchResults')
-      const results = this.useSearchStore.results
-      console.log('Computed results:', results)
-      return results
-    },
-  },
   watch: {
-    searchResults(newResults) {
-      this.results = newResults
+    'searchStore.results': {
+      handler(newResults) {
+        this.results = newResults
+      },
+      immediate: true,
     },
   },
   mounted() {
-    this.useSearchStore.fetchResults()
+    this.searchStore.fetchResults()
   },
 }
 </script>
@@ -39,7 +34,7 @@ export default {
     </div>
 
     <div class="container" id="results"></div>
-    <SearchArticle :results="results" :key="results.length" />
+    <SearchArticle :results="results" />
   </div>
 </template>
 
