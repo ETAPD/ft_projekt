@@ -54,10 +54,8 @@ export default {
 </script>
 
 <style>
-main {
-  margin-top: 10%;
-}
 .container-article {
+  margin-top: 10%;
   box-sizing: border-box;
   width: 80%;
   margin: auto;
