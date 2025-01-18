@@ -42,7 +42,6 @@ export default {
     article: {
       handler(article) {
         this.useRelatedArticles.fetchRelatedArticles(article.category_id)
-        console.log('Fetching related articles for category:', article.category_id)
       },
       immediate: true,
       deep: true,
@@ -50,7 +49,6 @@ export default {
   },
   mounted() {
     this.useRelatedArticles.fetchRelatedArticles(this.article.category_id)
-    console.log('Fetching related articles for category:', this.article)
   },
 }
 </script>

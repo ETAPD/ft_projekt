@@ -82,11 +82,6 @@ export default {
       return this.$route.path === '/'
     },
   },
-  beforeRouteEnter(to, from, next) {
-    const searchStore = useSearchStore()
-    searchStore.updateSearchQuery('')
-    next()
-  },
 }
 </script>
 

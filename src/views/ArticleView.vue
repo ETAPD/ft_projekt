@@ -27,11 +27,7 @@ export default {
   methods: {
     fetchArticle() {
       const article = data.article.find((article) => article.post_id === this.id)
-      if (article) {
-        this.article = article
-      } else {
-        console.error('Article not found')
-      }
+      this.article = article
     },
   },
 }
