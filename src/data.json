@@ -285,26 +285,6 @@
     }
   ],
 
-  "stat": [
-    { "stat_id": "3", "post_id": "3", "views": "48" },
-    { "stat_id": "106", "post_id": "74", "views": "2" },
-    { "stat_id": "110", "post_id": "77", "views": "5" },
-    { "stat_id": "111", "post_id": "78", "views": "3" },
-    { "stat_id": "113", "post_id": "80", "views": "0" },
-    { "stat_id": "116", "post_id": "83", "views": "0" },
-    { "stat_id": "117", "post_id": "84", "views": "0" },
-    { "stat_id": "118", "post_id": "85", "views": "0" },
-    { "stat_id": "119", "post_id": "86", "views": "0" },
-    { "stat_id": "120", "post_id": "87", "views": "0" },
-    { "stat_id": "121", "post_id": "88", "views": "1" },
-    { "stat_id": "123", "post_id": "90", "views": "0" },
-    { "stat_id": "124", "post_id": "91", "views": "0" },
-    { "stat_id": "128", "post_id": "95", "views": "0" },
-    { "stat_id": "129", "post_id": "96", "views": "1" },
-    { "stat_id": "131", "post_id": "98", "views": "0" },
-    { "stat_id": "132", "post_id": "99", "views": "0" }
-  ],
-
   "user": [
     {
       "user_id": "13",
