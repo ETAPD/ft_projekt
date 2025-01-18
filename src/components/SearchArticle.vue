@@ -51,15 +51,6 @@ export default {
       return chunks
     },
   },
-  watch: {
-    '$route.fullPath': {
-      handler() {
-        console.log()
-        console.log('searcharticle465:', this.results)
-      },
-      immediate: true,
-    },
-  },
 }
 </script>
 
