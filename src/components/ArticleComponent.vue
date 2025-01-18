@@ -7,21 +7,49 @@
       <section class="container-text">
         <div v-html="article.content"></div>
       </section>
+      <RelatedArticles :relatedArticles="relatedArticles" />
     </div>
   </main>
 </template>
 
 <script>
+import { useRelatedArticlesStore } from '../stores/relatedArticles'
+import RelatedArticles from './RelatedArticles.vue'
+
 export default {
   name: 'ArticleComponent',
+  components: {
+    RelatedArticles,
+  },
   props: {
     article: {
-      type: String,
+      type: Object,
       required: true,
     },
   },
   data() {
-    return {}
+    return {
+      useRelatedArticles: useRelatedArticlesStore(),
+    }
+  },
+  computed: {
+    relatedArticles() {
+      return this.useRelatedArticles.relatedArticles
+    },
+  },
+  watch: {
+    article: {
+      handler(article) {
+        this.useRelatedArticles.fetchRelatedArticles(article.category_id)
+        console.log('Fetching related articles for category:', article.category_id)
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
+  mounted() {
+    this.useRelatedArticles.fetchRelatedArticles(this.article.category_id)
+    console.log('Fetching related articles for category:', this.article)
   },
 }
 </script>
@@ -34,22 +62,18 @@ main {
   box-sizing: border-box;
   width: 80%;
   margin: auto;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .title_img {
   width: 400px !important;
   margin-top: 2%;
   height: auto;
 }
-
 .container-text {
   width: 55%;
 }
-
 .container-text img {
   width: 100% !important;
   height: auto;
