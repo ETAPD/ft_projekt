@@ -1,31 +1,39 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <nav
+    class="navbar navbar-expand-lg fixed-top container-fluid d-flex justify-content-center mx-auto"
+  >
     <div class="container-fluid">
-      <div class="collapse navbar-collapse justify-content-center">
-        <ul class="navbar-nav d-flex flex-row">
-          <li :class="['nav-item', { active: isActive('/') }]">
-            <router-link class="nav-link ps-3" to="/">Domov</router-link>
-          </li>
-          <li :class="['nav-item', { active: isActive('/contact') }]">
-            <router-link class="nav-link ps-3" to="/contact">Kontakt</router-link>
-          </li>
-          <li :class="['nav-item', { active: isActive('/about') }]">
-            <router-link class="nav-link ps-3" to="/about">O-nás</router-link>
-          </li>
-        </ul>
-        <form class="d-flex ms-3" @submit.prevent>
+      <div class="d-flex justify-content-center">
+        <div>
+          <ul class="navbar-nav">
+            <li :class="['nav-item', { active: isActive('/') }]">
+              <router-link class="nav-link ps-3" to="/">Domov</router-link>
+            </li>
+            <li :class="['nav-item', { active: isActive('/contact') }]">
+              <router-link class="nav-link ps-3" to="/contact">Kontakt</router-link>
+            </li>
+            <li :class="['nav-item', { active: isActive('/about') }]">
+              <router-link class="nav-link ps-3" to="/about">O-nás</router-link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form v-if="isHomePage" class="d-flex" @submit.prevent>
+        <div class="search-container">
           <input
-            class="form-control me-2 search-input"
+            class="form-control me-2 search"
             type="search"
-            placeholder="Search"
+            placeholder="Ako sa hrá..."
             aria-label="Search"
             v-model="searchQuery"
             @input="onSearch"
             @focus="expandSearch"
             @blur="shrinkSearch"
           />
-        </form>
-      </div>
+          <img src="/media/img/lens.png" alt="Search" class="lens-icon" />
+        </div>
+      </form>
     </div>
   </nav>
 </template>
@@ -46,23 +54,33 @@ export default {
     onSearch() {
       this.useSearchStore.updateSearchQuery(this.searchQuery)
     },
-    expandSearch() {},
-    shrinkSearch() {},
     isActive(route) {
       return this.$route.path === route
+    },
+    expandSearch(event) {
+      event.target.style.width = '420px'
+      event.target.style.paddingLeft = '15px'
+      this.$el.querySelector('.lens-icon').style.display = 'none'
+    },
+    shrinkSearch(event) {
+      if (!this.searchQuery) {
+        event.target.style.width = '40px'
+        event.target.style.paddingLeft = '9px'
+        this.$el.querySelector('.lens-icon').style.display = 'block'
+      }
     },
   },
   watch: {
     searchQuery: function (searchQuery) {
       this.useSearchStore.updateSearchQuery(searchQuery)
     },
-    searchResults(newResults) {
-      console.log('Search results updated:', newResults)
-    },
   },
   computed: {
     searchResults() {
       return this.useSearchStore.results
+    },
+    isHomePage() {
+      return this.$route.path === '/'
     },
   },
 }
@@ -80,7 +98,6 @@ nav {
   -moz-box-shadow: 6px 15px 40px 0px rgba(0, 0, 0, 0.38);
   box-shadow: 6px 15px 40px 0px rgba(0, 0, 0, 0.38);
   width: 100% !important;
-  backdrop-filter: blur(10px) !important;
   font-weight: bold;
 }
 
@@ -131,6 +148,10 @@ nav button:hover {
   align-items: center;
 }
 
+.search-container {
+  position: relative;
+}
+
 .search {
   border-radius: 35px;
   height: 38px;
@@ -157,6 +178,16 @@ nav button:hover {
   color: rgba(255, 255, 255, 0.719);
 }
 
+.lens-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
 form.d-flex {
   position: absolute;
   left: 50%;
@@ -171,16 +202,5 @@ form.d-flex {
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-}
-
-.login a:hover {
-  color: #ff4e00 !important;
-  text-decoration: underline;
-}
-
-.login a {
-  text-decoration: none;
-  font-size: 20px !important;
-  font-weight: bold;
 }
 </style>
