@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { useRelatedArticlesStore } from '../stores/relatedArticles'
+import { useRelatedArticlesStore } from '../stores/relatedarticles'
 import RelatedArticles from './RelatedArticles.vue'
 
 export default {
