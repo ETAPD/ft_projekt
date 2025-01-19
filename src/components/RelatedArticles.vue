@@ -1,13 +1,9 @@
 <template>
   <div v-if="relatedArticles.length" class="related-articles-container">
     <h2 class="related-articles-heading">Podobné články</h2>
-    <div
-      v-for="(row, rowIndex) in chunkedRelatedArticles"
-      :key="rowIndex"
-      class="row image-container"
-    >
+    <div class="row image-container">
       <div
-        v-for="article in row"
+        v-for="article in relatedArticles"
         :key="article.post_id"
         class="col"
         :style="{
@@ -42,17 +38,6 @@ export default {
       this.$router.push({ name: 'article', params: { id: postId } }).then(() => {
         window.location.reload()
       })
-    },
-  },
-  computed: {
-    chunkedRelatedArticles() {
-      const chunkSize = 3
-      const limitedResults = this.relatedArticles.slice(0, 9)
-      const chunks = []
-      for (let i = 0; i < limitedResults.length; i += chunkSize) {
-        chunks.push(limitedResults.slice(i, i + chunkSize))
-      }
-      return chunks
     },
   },
 }
